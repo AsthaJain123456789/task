@@ -1,0 +1,49 @@
+<div class="form">
+    <input type="text" [(ngModel)]="start" maxlength="3" placeholder="Start (e.g., BLR)" />
+    <input type="text" [(ngModel)]="end" maxlength="3" placeholder="End (e.g., MAA)" />
+    <button (click)="addTrip()">Add Trip</button>
+    <button (click)="exportTrips()" class="export">Export JSON</button>
+    <button (click)="toggleDarkMode()" class="dark-toggle">
+        {{ darkMode ? '☀️ Light Mode' : '🌙 Dark Mode' }}
+    </button>
+</div>
+
+
+<div class="trip-graph" [ngClass]="{ dark: darkMode }">
+    <svg [attr.width]="(trips.length + 1) * 140" height="150">
+        <ng-container *ngFor="let trip of trips; let i = index">
+            <ng-container [ngSwitch]="getLevel(i)">
+                <!-- Level 1 - Continued or Arrowed -->
+                <g *ngSwitchCase="1">
+                    <line *ngIf="!isArrowed(i)" [attr.x1]="i * 140 + 20" y1="50" [attr.x2]="(i + 1) * 140" y2="50"
+                        stroke="#3498db" stroke-width="2" />
+
+                    <line *ngIf="isArrowed(i)" [attr.x1]="i * 140 + 20" y1="50" [attr.x2]="(i + 1) * 140" y2="50"
+                        stroke="#f39c12" stroke-width="2" marker-end="url(#arrowhead)" />
+                </g>
+
+                <!-- Level 2 - Repeated -->
+                <g *ngSwitchCase="2">
+                    <path
+                        [attr.d]="'M' + (i * 140 + 20) + ',50 Q' + ((i * 140 + (i + 1) * 140) / 2) + ',100 ' + ((i + 1) * 140) + ',50'"
+                        stroke="#9b59b6" fill="transparent" stroke-width="2" />
+                </g>
+            </ng-container>
+
+            <!-- Circle and Label -->
+            <circle [attr.cx]="i * 140 + 20" cy="50" r="5" fill="#34495e" />
+            <text [attr.x]="i * 140 + 5" y="70" font-size="12" [attr.fill]="darkMode ? '#ddd' : '#444'">
+                {{ editingIndex === i ? '' : (trip.start + ' - ' + trip.end) }}
+            </text>
+        </ng-container>
+
+        <!-- Last point -->
+        <circle *ngIf="trips.length" [attr.cx]="trips.length * 140" cy="50" r="5" fill="#ccc" />
+
+        <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="#f39c12" />
+            </marker>
+        </defs>
+    </svg>
+</div>

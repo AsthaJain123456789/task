@@ -1,0 +1,157 @@
+.form {
+    margin-bottom: 20px;
+  }
+  
+  input {
+    margin-right: 10px;
+    padding: 4px 8px;
+    width: 100px;
+    text-transform: uppercase;
+  }
+  
+  button {
+    padding: 6px 12px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .export {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .visualizer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  
+  .trip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    border: 1px dashed #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: move;
+    background: #f9f9f9;
+  }
+  
+  .line {
+    width: 80px;
+    height: 2px;
+    background-color: #888;
+    position: relative;
+  }
+  
+  .level1 {
+    margin-top: 20px;
+  }
+  
+  .level2 {
+    margin-top: 60px;
+    background-color: #f39c12;
+  }
+  
+  .arrow::after {
+    content: '→';
+    position: absolute;
+    right: -12px;
+    top: -10px;
+    font-size: 20px;
+    color: #3498db;
+  }
+  
+  .labels {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #444;
+  }
+  
+  .delete {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .dark {
+    background-color: #121212;
+    color: #eee;
+  
+    svg text {
+      fill: #eee;
+    }
+  }
+  
+  button.dark-toggle {
+    background: #333;
+    color: white;
+  }
+  
+  /* 🎯 EDIT INPUT FORM (INSIDE SVG) */
+svg foreignObject div {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 5px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 0 4px rgba(0,0,0,0.1);
+  }
+  
+  .dark svg foreignObject div {
+    background-color: #222;
+    border-color: #555;
+  }
+  
+  /* ✏️ Edit Inputs */
+  svg foreignObject input {
+    width: 55px;
+    padding: 2px 4px;
+    font-size: 12px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    outline: none;
+  }
+  
+  /* ✔ ✖ Buttons */
+  svg foreignObject button {
+    font-size: 14px;
+    padding: 2px 6px;
+    border: none;
+    border-radius: 4px;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .edit {
+    font-size: 13px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 8px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .edit:hover {
+    background-color: #2980b9;
+  }
+  
+  
