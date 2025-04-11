@@ -78,18 +78,4 @@ export class TripVisualizerComponent {
     this.editedEnd = trip.end;
   }
   
-  cancelEdit() {
-    this.editingIndex = null;
-    this.editedStart = '';
-    this.editedEnd = '';
-  }
-  saveEdit(index: number) {
-    if (this.editedStart && this.editedEnd) {
-      this.trips[index] = {
-        start: this.editedStart.toUpperCase(),
-        end: this.editedEnd.toUpperCase()
-      };
-      this.cancelEdit();
-    }
-  }
 }
